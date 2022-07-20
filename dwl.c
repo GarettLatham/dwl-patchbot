@@ -2174,19 +2174,24 @@ void
 monocle(Monitor *m)
 {
 	Client *c;
-	int n = 0;
 
 	wl_list_for_each(c, &clients, link) {
 		if (!VISIBLEON(c, m) || c->isfloating || c->isfullscreen)
 			continue;
-		resize(c, m->w, 0, !smartborders);
-		n++;
+
+		if (!enablegaps || !monoclegaps) {
+			resize(c, m->w, 0, 0);
+		} else {
+			resize(c, (struct wlr_box){
+				.x = m->w.x + m->gappoh,
+				.y = m->w.y + m->gappov,
+				.width = m->w.width - 2 * m->gappoh,
+				.height = m->w.height - 2 * m->gappov
+			}, 0, 0);
+		}
 	}
-	if (n)
-		snprintf(m->ltsymbol, LENGTH(m->ltsymbol), "[%d]", n);
-	if ((c = focustop(m)))
-		wlr_scene_node_raise_to_top(&c->scene->node);
 }
+
 
 void
 motionabsolute(struct wl_listener *listener, void *data)
