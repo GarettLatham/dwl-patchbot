@@ -132,6 +132,8 @@ static const char *termcmd[] = { "foot", NULL };
 static const char *firefoxcmd[]             = { "firefox", NULL };
 static const char *menucmd[] = { "wmenu-run", "-f", "FiraCode Nerd Font Mono 12", "-l", "10", NULL };
 
+#include "shiftview.c"
+
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: 2 -> at, etc. */
 	/* modifier                  key                  function          argument */
@@ -162,7 +164,9 @@ static const Key keys[] = {
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_O,          incovgaps,     {.i = -1 } },
 	{ MODKEY,                    XKB_KEY_Return,      zoom,             {0} },
 	{ MODKEY,                    XKB_KEY_b,           togglebar,        {0} },
-  { MODKEY,                    XKB_KEY_Tab,         view,             {0} },
+	{ MODKEY,                    XKB_KEY_Tab,         view,             {0} },
+	{ MODKEY,                    XKB_KEY_a,           shiftview,        {.i = -1} },
+	{ MODKEY,                    XKB_KEY_semicolon,   shiftview,        {.i = +1} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_q,           killclient,       {0} },
 	{ MODKEY,                    XKB_KEY_t,           setlayout,        {.v = &layouts[0]} },
 	{ MODKEY,                    XKB_KEY_f,           setlayout,        {.v = &layouts[1]} },
