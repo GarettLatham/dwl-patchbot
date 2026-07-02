@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=dwl
+Comment=Dynamic window manager for Wayland
+Exec=/home/user1/.local/bin/start-dwl
+Type=Application
+DesktopNames=dwl
