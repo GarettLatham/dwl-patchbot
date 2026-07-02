@@ -1,6 +1,6 @@
 [Desktop Entry]
-Name=dwl
-Comment=Dynamic window manager for Wayland
+Name=dwl patched
+Comment=Patched dwl with slstatus and local startup script
 Exec=/home/user1/.local/bin/start-dwl
 Type=Application
 DesktopNames=dwl
