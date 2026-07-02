@@ -1,14 +1,18 @@
 #!/bin/sh
 set -eu
 
+sudo mkdir -p /etc/wayland-sessions-clean
+sudo mkdir -p /etc/xsessions-empty
+sudo mkdir -p /usr/local/bin
+
+sudo install -m 755 scripts/start-dwl /usr/local/bin/start-dwl-patched
+sudo install -m 644 sessions/dwl.desktop /etc/wayland-sessions-clean/dwl.desktop
+
 mkdir -p "$HOME/.local/bin"
-mkdir -p "$HOME/.local/share/wayland-sessions"
-
-cp scripts/start-dwl "$HOME/.local/bin/start-dwl"
-chmod +x "$HOME/.local/bin/start-dwl"
-
-cp sessions/dwl.desktop "$HOME/.local/share/wayland-sessions/dwl.desktop"
+install -m 755 scripts/start-dwl "$HOME/.local/bin/start-dwl"
 
 echo "Installed:"
-echo "$HOME/.local/bin/start-dwl"
-echo "$HOME/.local/share/wayland-sessions/dwl.desktop"
+echo "  /usr/local/bin/start-dwl-patched"
+echo "  /etc/wayland-sessions-clean/dwl.desktop"
+echo "  /etc/xsessions-empty"
+echo "  $HOME/.local/bin/start-dwl"

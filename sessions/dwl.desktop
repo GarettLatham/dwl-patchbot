@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=dwl patched
-Comment=Patched dwl with slstatus and local startup script
-Exec=/home/user1/.local/bin/start-dwl
+Comment=Patched dwl with slstatus, wallpaper, gaps, smartborders, and pertag
+Exec=/usr/local/bin/start-dwl-patched
 Type=Application
 DesktopNames=dwl
