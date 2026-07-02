@@ -1,0 +1,28 @@
+#!/bin/sh
+set -eu
+
+branch="$(git branch --show-current)"
+
+if [ "$branch" != "garett-patches" ]; then
+	echo "You are on branch: $branch"
+	echo "Switch to garett-patches first:"
+	echo "  git switch garett-patches"
+	exit 1
+fi
+
+if ! git diff --quiet || ! git diff --cached --quiet; then
+	echo "Working tree is dirty. Commit or stash changes first."
+	exit 1
+fi
+
+git fetch upstream
+git rebase upstream/main
+
+make clean
+make
+
+echo
+echo "Rebase/build finished."
+echo "Now run:"
+echo "  sudo make install"
+echo "  git push --force-with-lease"

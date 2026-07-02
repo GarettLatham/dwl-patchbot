@@ -1,0 +1,14 @@
+#!/bin/sh
+set -eu
+
+mkdir -p "$HOME/.local/bin"
+mkdir -p "$HOME/.local/share/wayland-sessions"
+
+cp scripts/start-dwl "$HOME/.local/bin/start-dwl"
+chmod +x "$HOME/.local/bin/start-dwl"
+
+cp sessions/dwl.desktop "$HOME/.local/share/wayland-sessions/dwl.desktop"
+
+echo "Installed:"
+echo "$HOME/.local/bin/start-dwl"
+echo "$HOME/.local/share/wayland-sessions/dwl.desktop"
